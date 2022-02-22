@@ -2,6 +2,38 @@
     width: 100vw;
     height: 100vh;
     max-width: 100%;
-    background-image: url('assets/img/cards3.jpg');
+    background-image: url('/assets/img/cardsBackground.jpg');
     background-size: cover;
 }
+
+.ringOfFireSpan {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 100px;
+    height: 100px;
+    width: 500px;
+    color: gold;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dice {
+    z-index: 2;
+    position: absolute;
+    bottom: 0;
+    right: 50px;
+    width: 200px;
+    object-fit: contain;
+    transition: all .125s ease-in-out;
+
+    &:hover {
+        cursor: pointer;
+        filter: brightness(1.5);
+        transform: scale(1.1);
+    }
+}
+

@@ -1,0 +1,14 @@
+<div class="userOverlay">
+  <section class="addUserContainer">
+    <div class="userImgBox">
+      <img
+        src="https://avatars.dicebear.com/api/bottts/:{{ playerName }}.svg"
+      />
+    </div>
+    <input (keyup)="onKey($event)" />
+    <button id="addUser">Add User</button>
+    <button onClick="window.open('https://avatars.dicebear.com/')">
+      How the custom user images are generated
+    </button>
+  </section>
+</div>

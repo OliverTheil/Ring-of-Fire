@@ -1,7 +1,27 @@
 <div class="gameArea">
-    <div class="cardStack">
-        <img [ngStyle]="{'right.px': i * 8}" *ngFor="let c of [1,2,3,4]; let i = index;" src="/assets/cards/card_cover.png">
-        <img (click)="takeCard()" src="/assets/cards/card_cover.png" class="topCard" style="right: 40px">
-        <img *ngIf="pickCardAnimation" src="/assets/cards/ace_8.png" class="takeCard" style="right: 40px">
-    </div>
+  <div class="cardStack">
+    <img
+      [ngStyle]="{ 'right.px': i * 8 }"
+      *ngFor="let c of [1, 2, 3, 4]; let i = index"
+      src="/assets/cards/card_cover.png"
+    />
+    <img
+      (click)="takeCard()"
+      src="/assets/cards/card_cover.png"
+      class="topCard"
+      style="right: 40px"
+    />
+    <img
+      *ngFor="let playedCard of game.playedCards"
+      class="played-card"
+      src="/assets/cards/{{ playedCard }}.png"
+    />
+    <img
+      *ngIf="pickCardAnimation"
+      src="/assets/cards/{{ currentCard }}.png"
+      class="takeCard"
+      style="right: 40px"
+    />
+  </div>
+  <app-player></app-player>
 </div>

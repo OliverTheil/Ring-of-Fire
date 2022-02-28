@@ -1,45 +1,50 @@
 .gameArea {
-    width: 100vw;
-    height: 100vh;
-    max-width: 100%;
-    background-image: url('/assets/img/wood.jpg');
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  background-image: url("/assets/img/wood.jpg");
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .cardStack {
-    position: relative;
-    img {
-        position: absolute;
-        width: 120px;
-    }
+  position: relative;
+  img {
+    position: absolute;
+    width: 120px;
+  }
 }
 
 .topCard {
-    cursor: pointer;
-    transition: all 125ms ease-in-out;
-    &:hover {
-        transform: scale(1.1) translateY(-10px);
-    }
+  cursor: pointer;
+  transition: all 125ms ease-in-out;
+  &:hover {
+    transform: scale(1.1) translateY(-10px);
+  }
+}
+
+.played-card {
+  right: 40px;
+  transform: scale(1.2) translateX(140px) translateY(-200px) rotate(-10deg);
 }
 
 .takeCard {
-    animation: pickCardAnimation 2s ease-in-out;
-    transform: scale(1.2) translateX(140px) translateY(-200px) rotate(-10deg);
+  animation: pickCardAnimation 2s ease-in-out;
+  transform: scale(1.2) translateX(140px) translateY(-200px) rotate(-10deg);
 }
 
 @keyframes pickCardAnimation {
-    0% {
-        transform: scale(1);
-    }
+  0% {
+    transform: scale(1);
+  }
 
-    20% {
-        transform: scale(1.6);
-    }
+  20% {
+    transform: scale(1.6);
+  }
 
-    100% {
-        transform: scale(1.2) translateX(140px) translateY(-200px) rotate(-10deg);
-    }
+  100% {
+    transform: scale(1.2) translateX(140px) translateY(-200px) rotate(-10deg);
+  }
 }

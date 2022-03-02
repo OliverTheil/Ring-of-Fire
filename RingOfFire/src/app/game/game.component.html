@@ -23,5 +23,44 @@
       style="right: 40px"
     />
   </div>
-  <app-player></app-player>
+  <button
+    mat-fab
+    color="primary"
+    aria-label="Example icon button with a delete icon"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+  <div class="addedUser">
+    <app-player
+      *ngFor="let player of game.players"
+      [name]="player"
+    ></app-player>
+  </div>
+  <section class="addUserArea">
+    <div class="addUserContainer">
+      <div class="userImgBox">
+        <img
+          src="https://avatars.dicebear.com/api/bottts/:{{ playerName }}.svg"
+        />
+      </div>
+      <p class="userName" id="userName">{{ playerName }}</p>
+      <input
+        maxlength="10"
+        minlength="4"
+        class="inputUserName"
+        (keyup)="onKey($event)"
+      />
+      <button (click)="addUser()" class="addUserButton">Add User</button>
+      <div class="changeColor">
+        <div class="color bg--blue"></div>
+        <div class="color bg--red"></div>
+        <div class="color bg--green"></div>
+        <div class="color bg--purple"></div>
+        <div class="color bg--orange"></div>
+        <div class="color bg--limette"></div>
+        <div class="color bg--white"></div>
+        <div class="color bg--black"></div>
+      </div>
+    </div>
+  </section>
 </div>

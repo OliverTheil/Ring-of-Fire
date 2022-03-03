@@ -32,13 +32,17 @@
   </button>
   <div class="addedUser">
     <app-player
-      *ngFor="let player of game.players"
+      *ngFor="let player of game.players; let i = index"
       [name]="player"
+      [background]="playerBg"
+      [addedPlayerBackground]="addedPlayerBackground"
+      [playerCount]="playerCount"
     ></app-player>
   </div>
+  <div id="gameArea"></div>
   <section class="addUserArea">
     <div class="addUserContainer">
-      <div class="userImgBox">
+      <div id="userImgBox-{{ playerName }}" class="userImgBox {{ playerBg }}">
         <img
           src="https://avatars.dicebear.com/api/bottts/:{{ playerName }}.svg"
         />
@@ -52,14 +56,14 @@
       />
       <button (click)="addUser()" class="addUserButton">Add User</button>
       <div class="changeColor">
-        <div class="color bg--blue"></div>
-        <div class="color bg--red"></div>
-        <div class="color bg--green"></div>
-        <div class="color bg--purple"></div>
-        <div class="color bg--orange"></div>
-        <div class="color bg--limette"></div>
-        <div class="color bg--white"></div>
-        <div class="color bg--black"></div>
+        <div (click)="changeBgBlue()" class="color bg--blue"></div>
+        <div (click)="changeBgRed()" class="color bg--red"></div>
+        <div (click)="changeBgGreen()" class="color bg--green"></div>
+        <div (click)="changeBgPurple()" class="color bg--purple"></div>
+        <div (click)="changeBgOrange()" class="color bg--orange"></div>
+        <div (click)="changeBgLimette()" class="color bg--limette"></div>
+        <div (click)="changeBgWhite()" class="color bg--white"></div>
+        <div (click)="changeBgBlack()" class="color bg--black"></div>
       </div>
     </div>
   </section>

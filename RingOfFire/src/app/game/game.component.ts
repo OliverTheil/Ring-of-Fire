@@ -10,12 +10,20 @@ export class GameComponent implements OnInit {
   pickCardAnimation = false;
   playerName = '';
   game: Game;
+  playerBg = '';
+  addedPlayerBackground = '';
+  playerCount = 0;
+
   currentCard: string = '';
 
   constructor() {}
 
   ngOnInit(): void {
     this.newGame();
+  }
+
+  newGame() {
+    this.game = new Game();
   }
 
   takeCard() {
@@ -37,21 +45,92 @@ export class GameComponent implements OnInit {
 
   addUser() {
     let showUserName = document.getElementById('userName').innerHTML;
+    let gameArea = document.getElementById('gameArea');
     showUserName = this.playerName;
+
     if (this.game.players.length > 4) {
-      alert('The limit are 5 Players. Please delete one');
+      this.tooMuchPlayer(gameArea);
+      this.deleteAlertWindow();
     } else if (this.game.players.includes(showUserName)) {
-      alert(
-        'An user with this name already exists. Please enter another name.'
-      );
+      this.userExists(gameArea);
+      this.deleteAlertWindow();
     } else if (showUserName.length < 4) {
-      alert('At least 4 letters.');
+      this.letters(gameArea);
+      this.deleteAlertWindow();
     } else {
       this.game.players.push(showUserName);
+      this.addedPlayerBackground = this.playerBg;
+      this.game.playerBg.push(this.addedPlayerBackground);
+      this.playerCount++;
+      console.table(this.game);
     }
   }
 
-  newGame() {
-    this.game = new Game();
+  tooMuchPlayer(gameArea) {
+    gameArea.innerHTML += `
+      <div>
+        <div class="alertWindow z--5">
+          Please delete one player. 
+        </div>
+      </div>
+      `;
+  }
+
+  userExists(gameArea) {
+    gameArea.innerHTML += `
+      <div>
+        <div class="alertWindow z--5">
+          An user with this name already exists. Please enter another name.
+        </div>
+      </div>
+      `;
+  }
+
+  letters(gameArea) {
+    gameArea.innerHTML += `
+      <div>
+        <div class="alertWindow z--5">
+          At least 4 letters.
+        </div>
+      </div>
+      `;
+  }
+
+  deleteAlertWindow() {
+    setTimeout(() => {
+      document.getElementById('gameArea').innerHTML = '';
+    }, 2000);
+  }
+
+  changeBgBlue() {
+    this.playerBg = 'bg--blue';
+  }
+
+  changeBgRed() {
+    this.playerBg = 'bg--red';
+  }
+
+  changeBgGreen() {
+    this.playerBg = 'bg--green';
+  }
+
+  changeBgPurple() {
+    this.playerBg = 'bg--purple';
+  }
+
+  changeBgOrange() {
+    this.playerBg = 'bg--orange';
+  }
+
+  changeBgLimette() {
+    this.playerBg = 'bg--limette';
+  }
+
+  changeBgWhite() {
+    this.playerBg = 'bg--white';
+  }
+
+  changeBgBlack() {
+    this.playerBg = 'bg--black';
   }
 }

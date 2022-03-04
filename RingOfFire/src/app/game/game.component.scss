@@ -18,9 +18,8 @@
 }
 
 .addedUser {
-  z-index: 4;
   position: absolute;
-  top: 10rem;
+  top: 4rem;
   right: 0rem;
   height: fit-content;
   max-height: 42rem;
@@ -35,6 +34,10 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+
+  @media (max-width: 700px) {
+    max-height: 34rem;
+  }
 }
 
 .topCard {
@@ -150,6 +153,11 @@
       cursor: pointer;
       transform: scale(1.2);
     }
+    @media (max-width: 700px) {
+      right: 1rem;
+      height: 1.5rem;
+      width: 1.5rem;
+    }
   }
 
   &--remove {
@@ -167,6 +175,11 @@
     &:hover {
       cursor: pointer;
       transform: scale(1.2);
+    }
+    @media (max-width: 700px) {
+      right: 4rem;
+      height: 1.5rem;
+      width: 1.5rem;
     }
   }
 }

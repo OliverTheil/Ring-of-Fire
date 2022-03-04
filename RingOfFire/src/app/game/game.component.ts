@@ -11,7 +11,6 @@ export class GameComponent implements OnInit {
   playerName = '';
   game: Game;
   playerBg = '';
-  addedPlayerBackground = '';
   addPlayerDialog = false;
   addUserPossible = false;
   removeUserPossible = true;
@@ -35,6 +34,10 @@ export class GameComponent implements OnInit {
     if (!this.pickCardAnimation) {
       this.currentCard = this.game.stack.pop();
       this.pickCardAnimation = true;
+      this.game.currentPlayer++;
+      if (this.game.players.length == this.game.currentPlayer) {
+        this.game.currentPlayer = 0;
+      }
 
       setTimeout(() => {
         this.pickCardAnimation = false;
@@ -58,7 +61,11 @@ export class GameComponent implements OnInit {
   }
 
   removeUser() {
-    this.removingUserMode = true;
+    if (!this.removingUserMode) {
+      this.removingUserMode = true;
+    } else {
+      this.removingUserMode = false;
+    }
   }
 
   checkUsers() {
@@ -98,6 +105,7 @@ export class GameComponent implements OnInit {
       this.deleteAlertWindow();
     } else {
       this.finishAddUser(showUserName);
+      console.log(this.game);
     }
   }
 
@@ -112,13 +120,14 @@ export class GameComponent implements OnInit {
   }
 
   enableBackgroundColor() {
-    this.addedPlayerBackground = this.playerBg;
-    if (this.addedPlayerBackground == '') {
+    if (this.playerBg == '') {
       this.game.playerBg.push('bg--transparent');
     } else {
-      this.game.playerBg.push(this.addedPlayerBackground);
+      this.game.playerBg.push(this.playerBg);
     }
   }
+
+  showCardRules() {}
 
   tooMuchPlayer(gameArea) {
     gameArea.innerHTML += `

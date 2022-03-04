@@ -27,11 +27,11 @@
     <app-player
       *ngFor="let player of game.players; let i = index"
       [name]="player"
-      [background]="playerBg"
-      [addedPlayerBackground]="addedPlayerBackground"
+      [background]="game.playerBg[i]"
       [playerActive]="i == game.currentPlayer"
     ></app-player>
   </div>
+  <app-game-card></app-game-card>
   <div id="gameArea"></div>
   <button
     (click)="removeUser()"
@@ -46,9 +46,9 @@
   <section
     id="addUserArea"
     [class.component--hide]="addPlayerDialog"
-    class="addUserArea"
+    class="addUserArea z--5"
   >
-    <div class="addUserContainer">
+    <div class="addUserContainer z--5">
       <div (click)="close()" class="button--close bg--red"></div>
       <div id="userImgBox-{{ playerName }}" class="userImgBox {{ playerBg }}">
         <img

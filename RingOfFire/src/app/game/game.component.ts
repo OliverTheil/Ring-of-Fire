@@ -13,6 +13,9 @@ export class GameComponent implements OnInit {
   playerBg = '';
   addedPlayerBackground = '';
   addPlayerDialog = false;
+  addUserPossible = false;
+  removeUserPossible = true;
+  removingUserMode = false;
 
   currentCard: string = '';
 
@@ -20,6 +23,8 @@ export class GameComponent implements OnInit {
 
   ngOnInit(): void {
     this.newGame();
+    this.checkUsers();
+    console.log(this.addUserPossible);
   }
 
   newGame() {
@@ -49,10 +54,30 @@ export class GameComponent implements OnInit {
     } else {
       this.addPlayerDialog = false;
     }
+    this.checkUsers();
+  }
+
+  removeUser() {
+    this.removingUserMode = true;
+  }
+
+  checkUsers() {
+    if (this.game.players.length < 5 && this.addPlayerDialog == true) {
+      this.addUserPossible = true;
+    } else {
+      this.addUserPossible = false;
+    }
+
+    if (this.game.players.length == 0) {
+      this.removeUserPossible = false;
+    } else {
+      this.removeUserPossible = true;
+    }
   }
 
   openAddPlayerDialog() {
     if (this.addPlayerDialog) {
+      this.addUserPossible = false;
       this.addPlayerDialog = false;
     }
   }
@@ -72,14 +97,26 @@ export class GameComponent implements OnInit {
       this.letters(gameArea);
       this.deleteAlertWindow();
     } else {
-      this.game.players.push(showUserName);
-      this.addedPlayerBackground = this.playerBg;
-      if (this.addedPlayerBackground == '') {
-        this.game.playerBg.push('bg--transparent');
-      } else {
-        this.game.playerBg.push(this.addedPlayerBackground);
-      }
-      console.table(this.game);
+      this.finishAddUser(showUserName);
+    }
+  }
+
+  finishAddUser(showUserName) {
+    this.game.players.push(showUserName);
+    this.enableBackgroundColor();
+    this.checkUsers();
+    if (this.game.players.length < 5) {
+      this.addUserPossible = true;
+    }
+    this.close();
+  }
+
+  enableBackgroundColor() {
+    this.addedPlayerBackground = this.playerBg;
+    if (this.addedPlayerBackground == '') {
+      this.game.playerBg.push('bg--transparent');
+    } else {
+      this.game.playerBg.push(this.addedPlayerBackground);
     }
   }
 
@@ -116,7 +153,7 @@ export class GameComponent implements OnInit {
   deleteAlertWindow() {
     setTimeout(() => {
       document.getElementById('gameArea').innerHTML = '';
-    }, 2000);
+    }, 2500);
   }
 
   changeBgBlue() {

@@ -23,7 +23,7 @@
       style="right: 40px"
     />
   </div>
-  <div class="addedUser">
+  <div [class.user--remove]="removingUserMode" class="addedUser">
     <app-player
       *ngFor="let player of game.players; let i = index"
       [name]="player"
@@ -33,13 +33,19 @@
     ></app-player>
   </div>
   <div id="gameArea"></div>
-  <button>-</button>
-  <button class="button--add bg--limette z--5" (click)="openAddPlayerDialog()">
-    +
-  </button>
+  <button
+    (click)="removeUser()"
+    class="button--remove bg--red z--5"
+    [class.component--hide]="!removeUserPossible"
+  ></button>
+  <button
+    [class.component--hide]="!addUserPossible"
+    class="button--add bg--limette z--5"
+    (click)="openAddPlayerDialog()"
+  ></button>
   <section
     id="addUserArea"
-    [class.dialog--change]="addPlayerDialog"
+    [class.component--hide]="addPlayerDialog"
     class="addUserArea"
   >
     <div class="addUserContainer">

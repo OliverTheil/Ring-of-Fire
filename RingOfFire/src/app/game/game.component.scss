@@ -135,6 +135,8 @@
 
 .button {
   &--add {
+    background-image: url("/assets/icons/addwhite.svg");
+    background-size: cover;
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -149,10 +151,37 @@
       transform: scale(1.2);
     }
   }
+
+  &--remove {
+    background-image: url("/assets/icons/removewhite.svg");
+    background-size: cover;
+    position: absolute;
+    top: 1rem;
+    right: 5rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 1px solid white;
+    font-size: 1.8rem;
+    color: black;
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.2);
+    }
+  }
 }
 
-.dialog--change {
+.component--hide {
   display: none !important;
+}
+
+.user--remove {
+  background: rgba(230, 12, 12, 0.37);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(9.7px);
+  -webkit-backdrop-filter: blur(9.7px);
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
 }
 
 .button--close {

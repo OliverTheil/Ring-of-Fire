@@ -12,7 +12,7 @@ export class GameComponent implements OnInit {
   game: Game;
   playerBg = '';
   addedPlayerBackground = '';
-  playerCount = 0;
+  addPlayerDialog = false;
 
   currentCard: string = '';
 
@@ -43,6 +43,20 @@ export class GameComponent implements OnInit {
     this.playerName = event.target.value;
   }
 
+  close() {
+    if (!this.addPlayerDialog) {
+      this.addPlayerDialog = true;
+    } else {
+      this.addPlayerDialog = false;
+    }
+  }
+
+  openAddPlayerDialog() {
+    if (this.addPlayerDialog) {
+      this.addPlayerDialog = false;
+    }
+  }
+
   addUser() {
     let showUserName = document.getElementById('userName').innerHTML;
     let gameArea = document.getElementById('gameArea');
@@ -60,8 +74,11 @@ export class GameComponent implements OnInit {
     } else {
       this.game.players.push(showUserName);
       this.addedPlayerBackground = this.playerBg;
-      this.game.playerBg.push(this.addedPlayerBackground);
-      this.playerCount++;
+      if (this.addedPlayerBackground == '') {
+        this.game.playerBg.push('bg--transparent');
+      } else {
+        this.game.playerBg.push(this.addedPlayerBackground);
+      }
       console.table(this.game);
     }
   }
@@ -126,11 +143,11 @@ export class GameComponent implements OnInit {
     this.playerBg = 'bg--limette';
   }
 
-  changeBgWhite() {
-    this.playerBg = 'bg--white';
-  }
-
   changeBgBlack() {
     this.playerBg = 'bg--black';
+  }
+
+  changeBgTransparent() {
+    this.playerBg = 'bg--transparent';
   }
 }

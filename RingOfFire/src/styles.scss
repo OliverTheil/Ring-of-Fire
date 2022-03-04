@@ -1,5 +1,5 @@
 html * {
-  font-family: "Bonheur Royale", cursive;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   font-size: 62.5%;
 }
 
@@ -17,7 +17,6 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .bg {
@@ -39,11 +38,12 @@ body {
   &--limette {
     background-color: rgb(0, 255, 157);
   }
-  &--white {
-    background-color: white;
-  }
+
   &--black {
     background-color: black;
+  }
+  &--transparent {
+    background-color: transparent;
   }
 }
 

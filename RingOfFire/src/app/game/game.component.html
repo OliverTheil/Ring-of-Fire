@@ -23,25 +23,27 @@
       style="right: 40px"
     />
   </div>
-  <button
-    mat-fab
-    color="primary"
-    aria-label="Example icon button with a delete icon"
-  >
-    <mat-icon>add</mat-icon>
-  </button>
   <div class="addedUser">
     <app-player
       *ngFor="let player of game.players; let i = index"
       [name]="player"
       [background]="playerBg"
       [addedPlayerBackground]="addedPlayerBackground"
-      [playerCount]="playerCount"
+      [playerActive]="i == game.currentPlayer"
     ></app-player>
   </div>
   <div id="gameArea"></div>
-  <section class="addUserArea">
+  <button>-</button>
+  <button class="button--add bg--limette z--5" (click)="openAddPlayerDialog()">
+    +
+  </button>
+  <section
+    id="addUserArea"
+    [class.dialog--change]="addPlayerDialog"
+    class="addUserArea"
+  >
     <div class="addUserContainer">
+      <div (click)="close()" class="button--close bg--red"></div>
       <div id="userImgBox-{{ playerName }}" class="userImgBox {{ playerBg }}">
         <img
           src="https://avatars.dicebear.com/api/bottts/:{{ playerName }}.svg"
@@ -62,8 +64,11 @@
         <div (click)="changeBgPurple()" class="color bg--purple"></div>
         <div (click)="changeBgOrange()" class="color bg--orange"></div>
         <div (click)="changeBgLimette()" class="color bg--limette"></div>
-        <div (click)="changeBgWhite()" class="color bg--white"></div>
         <div (click)="changeBgBlack()" class="color bg--black"></div>
+        <div
+          (click)="changeBgTransparent()"
+          class="color bg--transparent"
+        ></div>
       </div>
     </div>
   </section>

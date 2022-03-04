@@ -9,12 +9,14 @@ import { PlayerComponent } from './player/player.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { GameCardComponent } from './game-card/game-card.component';
 @NgModule({
   declarations: [
     AppComponent,
     StartScreenComponent,
     GameComponent,
     PlayerComponent,
+    GameCardComponent,
   ],
   imports: [
     BrowserModule,

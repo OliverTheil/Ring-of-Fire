@@ -1,4 +1,8 @@
-<div id="user-{{ name }}" class="addedUserBox {{ addedPlayerBackground }} ">
+<div
+  id="user-{{ name }}"
+  class="addedUserBox {{ addedPlayerBackground }} "
+  [class.player-active]="playerActive"
+>
   <img src="https://avatars.dicebear.com/api/bottts/:{{ name }}.svg" />
   <p class="addedUserName">{{ name }}</p>
 </div>

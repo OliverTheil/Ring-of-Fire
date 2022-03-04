@@ -9,7 +9,7 @@ export class PlayerComponent implements OnInit {
   @Input() name;
   @Input() background;
   @Input() addedPlayerBackground;
-  @Input() playerCount;
+  @Input() playerActive: boolean = false;
   constructor() {}
 
   ngOnInit(): void {}

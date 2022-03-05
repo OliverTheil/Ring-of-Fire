@@ -23,47 +23,50 @@
       style="right: 40px"
     />
   </div>
-  <div [class.user--remove]="removingUserMode" class="addedUser z--1">
+  <div [class.player--remove]="removeMode" class="addedPlayer z--1">
     <app-player
       *ngFor="let player of game.players; let i = index"
       [name]="player"
       [background]="game.playerBg[i]"
       [playerActive]="i == game.currentPlayer"
-      (click)="removeUser(i)"
+      (click)="removePlayer(i)"
     ></app-player>
   </div>
   <app-game-card [card]="currentCard"></app-game-card>
   <div id="gameArea"></div>
   <button
-    (click)="enableRemoveUserMode()"
+    (click)="enableRemove()"
     class="button--remove bg--red z--1"
-    [class.component--hide]="!removeUserButtonEnabled"
+    [class.component--hide]="!removeButtonEnabled"
   ></button>
   <button
-    [class.component--hide]="!addUserPossible"
+    [class.component--hide]="!addMode"
     class="button--add bg--limette z--1"
     (click)="openAddPlayerDialog()"
   ></button>
   <section
-    id="addUserArea"
+    id="addPlayerArea"
     [class.component--hide]="addPlayerDialog"
-    class="addUserArea z--5"
+    class="addPlayerArea z--5"
   >
-    <div class="addUserContainer z--5">
+    <div class="addPlayerContainer z--5">
       <div (click)="close()" class="button--close bg--red"></div>
-      <div id="userImgBox-{{ playerName }}" class="userImgBox {{ playerBg }}">
+      <div
+        id="playerImgBox-{{ playerName }}"
+        class="playerImgBox {{ playerBg }}"
+      >
         <img
           src="https://avatars.dicebear.com/api/bottts/:{{ playerName }}.svg"
         />
       </div>
-      <p class="userName" id="userName">{{ playerName }}</p>
+      <p class="playerName" id="playerName">{{ playerName }}</p>
       <input
         maxlength="10"
         minlength="4"
-        class="inputUserName"
+        class="inputPlayerName"
         (keyup)="onKey($event)"
       />
-      <button (click)="addUser()" class="addUserButton">Add User</button>
+      <button (click)="addPlayer()" class="addPlayerButton">Add player</button>
       <div class="changeColor">
         <div (click)="changeBgBlue()" class="color bg--blue"></div>
         <div (click)="changeBgRed()" class="color bg--red"></div>

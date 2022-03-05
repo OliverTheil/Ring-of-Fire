@@ -19,6 +19,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 600px) {
+    margin: 0.8rem;
+    line-height: 110%;
+    text-align: center;
+  }
 }
 
 .dice {

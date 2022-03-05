@@ -7,22 +7,23 @@ import { Game } from 'src/models/game';
   styleUrls: ['./game.component.scss'],
 })
 export class GameComponent implements OnInit {
-  pickCardAnimation = false;
-  playerName = '';
   game: Game;
-  playerBg = '';
+  pickCardAnimation = false;
   addPlayerDialog = false;
-  addUserPossible = false;
-  removeUserButtonEnabled = true;
-  removingUserMode = false;
+  addMode = false;
+  removeButtonEnabled = true;
+  removeMode = false;
+
   currentCard: string = '';
+  playerName: string = '';
+  playerBg: string = '';
 
   constructor() {}
 
   ngOnInit(): void {
     this.newGame();
-    this.checkUsers();
-    console.log(this.addUserPossible);
+    this.checkPlayers();
+    console.log(this.addMode);
   }
 
   newGame() {
@@ -45,7 +46,7 @@ export class GameComponent implements OnInit {
         console.table(this.game);
       }, 2000);
     } else {
-      this.noUser(gameArea);
+      this.noPlayer(gameArea);
       this.deleteAlertWindow();
     }
   }
@@ -60,78 +61,78 @@ export class GameComponent implements OnInit {
     } else {
       this.addPlayerDialog = false;
     }
-    this.checkUsers();
+    this.checkPlayers();
   }
 
-  enableRemoveUserMode() {
-    if (!this.removingUserMode) {
-      this.removingUserMode = true;
+  enableRemove() {
+    if (!this.removeMode) {
+      this.removeMode = true;
     } else {
-      this.removingUserMode = false;
+      this.removeMode = false;
     }
   }
 
-  removeUser(i) {
-    if (this.removingUserMode) {
+  removePlayer(i) {
+    if (this.removeMode) {
       this.game.players.splice(i, 1);
       this.game.playerBg.splice(i, 1);
       this.game.stack.splice(i, 1);
       this.game.playedCards.splice(i, 1);
-      this.removingUserMode = false;
+      this.removeMode = false;
       this.game.currentPlayer = 0;
       if (this.game.players.length == 0) {
-        this.removeUserButtonEnabled = false;
+        this.removeButtonEnabled = false;
       }
     }
   }
 
-  checkUsers() {
+  checkPlayers() {
     if (this.game.players.length < 5 && this.addPlayerDialog == true) {
-      this.addUserPossible = true;
+      this.addMode = true;
     } else {
-      this.addUserPossible = false;
+      this.addMode = false;
     }
 
     if (this.game.players.length == 0) {
-      this.removeUserButtonEnabled = false;
+      this.removeButtonEnabled = false;
     } else {
-      this.removeUserButtonEnabled = true;
+      this.removeButtonEnabled = true;
     }
   }
 
   openAddPlayerDialog() {
     if (this.addPlayerDialog) {
-      this.addUserPossible = false;
+      this.addMode = false;
       this.addPlayerDialog = false;
     }
   }
 
-  addUser() {
-    let showUserName = document.getElementById('userName').innerHTML;
+  addPlayer() {
+    let showPlayerName = document.getElementById('playerName').innerHTML;
     let gameArea = document.getElementById('gameArea');
-    showUserName = this.playerName;
+    showPlayerName = this.playerName;
 
     if (this.game.players.length > 4) {
       this.tooMuchPlayer(gameArea);
       this.deleteAlertWindow();
-    } else if (this.game.players.includes(showUserName)) {
-      this.userExists(gameArea);
+    } else if (this.game.players.includes(showPlayerName)) {
+      this.playerExists(gameArea);
       this.deleteAlertWindow();
-    } else if (showUserName.length < 4) {
+    } else if (showPlayerName.length < 4) {
       this.letters(gameArea);
       this.deleteAlertWindow();
     } else {
-      this.finishAddUser(showUserName);
+      this.finishAddPlayer(showPlayerName);
       console.log(this.game);
     }
   }
 
-  finishAddUser(showUserName) {
-    this.game.players.push(showUserName);
+  finishAddPlayer(showPlayerName) {
+    this.game.players.push(showPlayerName);
     this.enableBackgroundColor();
-    this.checkUsers();
+    this.checkPlayers();
     if (this.game.players.length < 5) {
-      this.addUserPossible = true;
+      this.addMode = true;
     }
     this.close();
   }
@@ -154,21 +155,21 @@ export class GameComponent implements OnInit {
       `;
   }
 
-  noUser(gameArea) {
+  noPlayer(gameArea) {
     gameArea.innerHTML += `
       <div>
         <div class="alertWindow z--5">
-          At least one user. 
+          At least one player. 
         </div>
       </div>
       `;
   }
 
-  userExists(gameArea) {
+  playerExists(gameArea) {
     gameArea.innerHTML += `
       <div>
         <div class="alertWindow z--5">
-          An user with this name already exists. Please enter another name.
+          An player with this name already exists. Please enter another name.
         </div>
       </div>
       `;

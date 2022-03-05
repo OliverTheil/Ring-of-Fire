@@ -1,10 +1,13 @@
 <div
-  id="user-{{ name }}"
-  class="addedUserBox {{ background }} z--4"
+  class="addedPlayerBox {{ background }} z--4"
   [class.player-active]="playerActive"
 >
   <img src="https://avatars.dicebear.com/api/bottts/:{{ name }}.svg" />
-  <p class="addedUserName" [class.component--hide]="!playerActive">
+  <p
+    class="addedPlayerName"
+    [class.darkFont]="playerActive"
+    [class.component--hide]="!playerActive"
+  >
     {{ name }}
   </p>
 </div>

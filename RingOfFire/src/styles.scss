@@ -91,3 +91,12 @@ body {
 .component--hide {
   display: none !important;
 }
+
+.darkFont {
+  color: black !important;
+  font-weight: 500 !important;
+  @media (max-width: 700px) {
+    color: white !important;
+    font-weight: 300 !important;
+  }
+}

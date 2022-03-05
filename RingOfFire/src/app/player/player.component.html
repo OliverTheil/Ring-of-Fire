@@ -4,5 +4,7 @@
   [class.player-active]="playerActive"
 >
   <img src="https://avatars.dicebear.com/api/bottts/:{{ name }}.svg" />
-  <p class="addedUserName">{{ name }}</p>
+  <p class="addedUserName" [class.component--hide]="!playerActive">
+    {{ name }}
+  </p>
 </div>

@@ -1,7 +1,6 @@
 <section class="gameCard z--4">
-  <h3 class="gameCard__title">Lorem ipsum dolor sit amet.</h3>
-  <span class="gameCard__span"
-    >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut facere odit
-    nam! Consequatur voluptates rem labore laudantium maxime tenetur libero.
-  </span>
+  <h3 class="gameCard__title">
+    {{ card ? title : "Please add an user and pick a card!" }}
+  </h3>
+  <span class="gameCard__span">{{ description }} </span>
 </section>

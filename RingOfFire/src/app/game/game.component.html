@@ -23,24 +23,25 @@
       style="right: 40px"
     />
   </div>
-  <div [class.user--remove]="removingUserMode" class="addedUser">
+  <div [class.user--remove]="removingUserMode" class="addedUser z--1">
     <app-player
       *ngFor="let player of game.players; let i = index"
       [name]="player"
       [background]="game.playerBg[i]"
       [playerActive]="i == game.currentPlayer"
+      (click)="removeUser(i)"
     ></app-player>
   </div>
-  <app-game-card></app-game-card>
+  <app-game-card [card]="currentCard"></app-game-card>
   <div id="gameArea"></div>
   <button
-    (click)="removeUser()"
-    class="button--remove bg--red z--5"
-    [class.component--hide]="!removeUserPossible"
+    (click)="enableRemoveUserMode()"
+    class="button--remove bg--red z--1"
+    [class.component--hide]="!removeUserButtonEnabled"
   ></button>
   <button
     [class.component--hide]="!addUserPossible"
-    class="button--add bg--limette z--5"
+    class="button--add bg--limette z--1"
     (click)="openAddPlayerDialog()"
   ></button>
   <section

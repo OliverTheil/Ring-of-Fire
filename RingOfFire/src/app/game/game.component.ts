@@ -13,9 +13,8 @@ export class GameComponent implements OnInit {
   playerBg = '';
   addPlayerDialog = false;
   addUserPossible = false;
-  removeUserPossible = true;
+  removeUserButtonEnabled = true;
   removingUserMode = false;
-
   currentCard: string = '';
 
   constructor() {}
@@ -31,7 +30,8 @@ export class GameComponent implements OnInit {
   }
 
   takeCard() {
-    if (!this.pickCardAnimation) {
+    let gameArea = document.getElementById('gameArea');
+    if (!this.pickCardAnimation && this.game.players.length != 0) {
       this.currentCard = this.game.stack.pop();
       this.pickCardAnimation = true;
       this.game.currentPlayer++;
@@ -44,6 +44,9 @@ export class GameComponent implements OnInit {
         this.game.playedCards.push(this.currentCard);
         console.table(this.game);
       }, 2000);
+    } else {
+      this.noUser(gameArea);
+      this.deleteAlertWindow();
     }
   }
 
@@ -60,11 +63,25 @@ export class GameComponent implements OnInit {
     this.checkUsers();
   }
 
-  removeUser() {
+  enableRemoveUserMode() {
     if (!this.removingUserMode) {
       this.removingUserMode = true;
     } else {
       this.removingUserMode = false;
+    }
+  }
+
+  removeUser(i) {
+    if (this.removingUserMode) {
+      this.game.players.splice(i, 1);
+      this.game.playerBg.splice(i, 1);
+      this.game.stack.splice(i, 1);
+      this.game.playedCards.splice(i, 1);
+      this.removingUserMode = false;
+      this.game.currentPlayer = 0;
+      if (this.game.players.length == 0) {
+        this.removeUserButtonEnabled = false;
+      }
     }
   }
 
@@ -76,9 +93,9 @@ export class GameComponent implements OnInit {
     }
 
     if (this.game.players.length == 0) {
-      this.removeUserPossible = false;
+      this.removeUserButtonEnabled = false;
     } else {
-      this.removeUserPossible = true;
+      this.removeUserButtonEnabled = true;
     }
   }
 
@@ -127,13 +144,21 @@ export class GameComponent implements OnInit {
     }
   }
 
-  showCardRules() {}
-
   tooMuchPlayer(gameArea) {
     gameArea.innerHTML += `
       <div>
         <div class="alertWindow z--5">
           Please delete one player. 
+        </div>
+      </div>
+      `;
+  }
+
+  noUser(gameArea) {
+    gameArea.innerHTML += `
+      <div>
+        <div class="alertWindow z--5">
+          At least one user. 
         </div>
       </div>
       `;

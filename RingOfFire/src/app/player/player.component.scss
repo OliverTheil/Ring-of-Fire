@@ -2,7 +2,7 @@
   height: 5rem;
   width: 5rem;
   margin: 1.6rem;
-  border-radius: 50%;
+  border-radius: 16px;
   border: transparent;
   display: flex;
   flex-direction: column;
@@ -21,7 +21,9 @@
   @media (max-width: 700px) {
     height: 2.5rem;
     width: 2.5rem;
-    padding: 0.4rem;
+    padding: 0rem;
+    margin: 0.6rem;
+    margin-left: 1rem;
   }
 
   img {
@@ -40,6 +42,9 @@
   font-weight: 300;
   width: fit-content;
   height: fit-content;
+  @media (max-width: 700px) {
+    font-size: 1.2rem;
+  }
 }
 
 .player-active {

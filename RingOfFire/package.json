@@ -23,7 +23,9 @@
     "@dicebear/avatars": "^4.10.2",
     "@dicebear/avatars-bottts-sprites": "^4.10.2",
     "node-sass": "^7.0.1",
+    "path": "^0.12.7",
     "rxjs": "~7.5.0",
+    "stream": "^0.0.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

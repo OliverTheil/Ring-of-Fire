@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from 'src/models/game';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-game',
@@ -18,11 +19,17 @@ export class GameComponent implements OnInit {
   playerName: string = '';
   playerBg: string = '';
 
-  constructor() {}
+  constructor(public firestore: AngularFirestore) {}
 
   ngOnInit(): void {
     this.newGame();
     this.checkPlayers();
+    this.firestore
+      .collection('games')
+      .valueChanges()
+      .subscribe((game) => {
+        console.log('Game update', game);
+      });
   }
 
   newGame() {

@@ -8,5 +8,5 @@ export const environment = {
     authDomain: 'ring-of-fire-6ae18.firebaseapp.com',
     messagingSenderId: '633316212875',
   },
-  production: true
+  production: true,
 };

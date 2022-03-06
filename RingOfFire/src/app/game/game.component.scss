@@ -2,7 +2,7 @@
   width: 100vw;
   height: 100vh;
   max-width: 100%;
-  background-image: url("assets/img/background.jpg");
+  background-image: url("/assets/img/background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 
@@ -175,7 +175,7 @@
 
 .button {
   &--add {
-    background-image: url("assets/icons/addwhite.svg");
+    background-image: url("/assets/icons/addwhite.svg");
     background-size: cover;
     position: absolute;
     top: 1rem;
@@ -202,7 +202,7 @@
   }
 
   &--remove {
-    background-image: url("assets/icons/removewhite.svg");
+    background-image: url("/assets/icons/removewhite.svg");
     background-size: cover;
     position: absolute;
     top: 1rem;

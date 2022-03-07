@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from 'src/models/game';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -19,21 +20,31 @@ export class GameComponent implements OnInit {
   playerName: string = '';
   playerBg: string = '';
 
-  constructor(public firestore: AngularFirestore) {}
+  constructor(
+    private route: ActivatedRoute,
+    public firestore: AngularFirestore
+  ) {}
 
   ngOnInit(): void {
     this.newGame();
+    this.route.params.subscribe((params) => {
+      console.log(params.id);
+
+      this.firestore
+        .collection('games')
+        .doc(params.id)
+        .valueChanges()
+        .subscribe((game) => {
+          console.log('Game update', game);
+        });
+    });
+
     this.checkPlayers();
-    this.firestore
-      .collection('games')
-      .valueChanges()
-      .subscribe((game) => {
-        console.log('Game update', game);
-      });
   }
 
   newGame() {
     this.game = new Game();
+    // this.firestore.collection('games').add(this.game.toJson());
   }
 
   takeCard() {

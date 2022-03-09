@@ -17,8 +17,8 @@
       src="assets/cards/{{ playedCard }}.png"
     />
     <img
-      *ngIf="pickCardAnimation"
-      src="assets/cards/{{ currentCard }}.png"
+      *ngIf="game.pickCardAnimation"
+      src="assets/cards/{{ game.currentCard }}.png"
       class="takeCard"
       style="right: 40px"
     />
@@ -32,7 +32,7 @@
       (click)="removePlayer(i)"
     ></app-player>
   </div>
-  <app-game-card [card]="currentCard"></app-game-card>
+  <app-game-card [card]="game.currentCard"></app-game-card>
   <div id="gameArea"></div>
   <button
     (click)="enableRemove()"

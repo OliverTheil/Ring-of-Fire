@@ -10,15 +10,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class GameComponent implements OnInit {
   game: Game;
-  pickCardAnimation = false;
   addPlayerDialog = false;
   addMode = false;
   removeButtonEnabled = true;
   removeMode = false;
-
-  currentCard: string = '';
   playerName: string = '';
   playerBg: string = '';
+  gameId: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,11 +26,10 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {
     this.newGame();
     this.route.params.subscribe((params) => {
-      console.log(params['id']);
-
+      this.gameId = params['id'];
       this.firestore
         .collection('games')
-        .doc(params['id'])
+        .doc(this.gameId)
         .valueChanges()
         .subscribe((game: any) => {
           console.log('Game update', game);
@@ -41,6 +38,8 @@ export class GameComponent implements OnInit {
           this.game.playedCards = game.playedCards;
           this.game.players = game.players;
           this.game.stack = game.stack;
+          this.game.currentCard = game.currentCard;
+          this.game.pickCardAnimation = game.pickCardAnimation;
         });
     });
 
@@ -49,28 +48,29 @@ export class GameComponent implements OnInit {
 
   newGame() {
     this.game = new Game();
-    // this.firestore.collection('games').add(this.game.toJson());
   }
 
   takeCard() {
     let gameArea = document.getElementById('gameArea');
-    if (!this.pickCardAnimation && this.game.players.length != 0) {
-      this.currentCard = this.game.stack.pop();
-      this.pickCardAnimation = true;
+    if (!this.game.pickCardAnimation && this.game.players.length != 0) {
+      this.game.currentCard = this.game.stack.pop();
+      this.game.pickCardAnimation = true;
       this.game.currentPlayer++;
+      this.saveSession();
       if (this.game.players.length == this.game.currentPlayer) {
         this.game.currentPlayer = 0;
       }
-
       setTimeout(() => {
-        this.pickCardAnimation = false;
-        this.game.playedCards.push(this.currentCard);
+        this.game.pickCardAnimation = false;
+        this.game.playedCards.push(this.game.currentCard);
         console.table(this.game);
+        this.saveSession();
       }, 2000);
     } else {
       this.noPlayer(gameArea);
       this.deleteAlertWindow();
     }
+    this.saveSession();
   }
 
   onKey(event: any) {
@@ -106,6 +106,7 @@ export class GameComponent implements OnInit {
         this.removeButtonEnabled = false;
       }
     }
+    this.saveSession();
   }
 
   checkPlayers() {
@@ -147,6 +148,14 @@ export class GameComponent implements OnInit {
       this.finishAddPlayer(showPlayerName);
       console.log(this.game);
     }
+    this.saveSession();
+  }
+
+  saveSession() {
+    this.firestore
+      .collection('games')
+      .doc(this.gameId)
+      .update(this.game.toJson());
   }
 
   finishAddPlayer(showPlayerName) {
@@ -165,6 +174,7 @@ export class GameComponent implements OnInit {
     } else {
       this.game.playerBg.push(this.playerBg);
     }
+    this.saveSession();
   }
 
   tooMuchPlayer(gameArea) {

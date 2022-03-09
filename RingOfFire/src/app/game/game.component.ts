@@ -28,14 +28,19 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {
     this.newGame();
     this.route.params.subscribe((params) => {
-      console.log;
+      console.log(params['id']);
 
       this.firestore
         .collection('games')
-        .doc()
+        .doc(params['id'])
         .valueChanges()
-        .subscribe((game) => {
+        .subscribe((game: any) => {
           console.log('Game update', game);
+          this.game.currentPlayer = game.currentPlayer;
+          this.game.playerBg = game.playerBg;
+          this.game.playedCards = game.playedCards;
+          this.game.players = game.players;
+          this.game.stack = game.stack;
         });
     });
 

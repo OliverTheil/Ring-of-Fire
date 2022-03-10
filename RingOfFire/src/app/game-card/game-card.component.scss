@@ -1,4 +1,4 @@
-.gameCard {
+.rule {
   bottom: 1rem;
   left: 0rem;
   position: absolute;
@@ -17,7 +17,6 @@
 
   @media (max-width: 700px) {
     bottom: 0;
-    height: 14rem;
   }
 
   @media (max-height: 620px) {

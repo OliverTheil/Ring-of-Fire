@@ -1,4 +1,4 @@
-.addedPlayerBox {
+.player {
   height: 5rem;
   width: 5rem;
   margin: 1.6rem;
@@ -35,7 +35,7 @@
   }
 }
 
-.addedPlayerName {
+.player__name {
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
   color: white;
@@ -54,7 +54,7 @@
   }
 }
 
-.player-active {
+.player--active {
   border: 2px solid aquamarine;
   border-radius: 16px;
 }

@@ -1,10 +1,7 @@
-<div
-  class="addedPlayerBox {{ background }} z--4"
-  [class.player-active]="playerActive"
->
+<div class="player {{ background }} z--4" [class.player--active]="playerActive">
   <img src="https://avatars.dicebear.com/api/bottts/:{{ name }}.svg" />
   <p
-    class="addedPlayerName"
+    class="player__name"
     [class.darkFont]="playerActive"
     [class.component--hide]="!playerActive"
   >

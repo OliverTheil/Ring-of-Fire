@@ -32,7 +32,6 @@ export class GameComponent implements OnInit {
         .doc(this.gameId)
         .valueChanges()
         .subscribe((game: any) => {
-          console.log('Game update', game);
           this.game.currentPlayer = game.currentPlayer;
           this.game.playerBg = game.playerBg;
           this.game.playedCards = game.playedCards;
@@ -63,7 +62,6 @@ export class GameComponent implements OnInit {
       setTimeout(() => {
         this.game.pickCardAnimation = false;
         this.game.playedCards.push(this.game.currentCard);
-        console.table(this.game);
         this.saveSession();
       }, 800);
     } else if (this.game.players.length == 0) {
@@ -146,7 +144,6 @@ export class GameComponent implements OnInit {
       this.deleteAlertWindow();
     } else {
       this.finishAddPlayer(showPlayerName);
-      console.log(this.game);
     }
     this.saveSession();
   }

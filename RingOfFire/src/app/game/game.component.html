@@ -1,5 +1,5 @@
-<div class="gameArea">
-  <div class="cardStack">
+<div class="game__area">
+  <div class="stack">
     <img
       [ngStyle]="{ 'right.px': i * 8 }"
       *ngFor="let c of [1, 2, 3, 4]; let i = index"
@@ -8,22 +8,22 @@
     <img
       (click)="takeCard()"
       src="assets/cards/card_cover.png"
-      class="topCard"
+      class="card__top"
       style="right: 40px"
     />
     <img
       *ngFor="let playedCard of game.playedCards"
-      class="played-card"
+      class="card__played"
       src="assets/cards/{{ playedCard }}.png"
     />
     <img
       *ngIf="game.pickCardAnimation"
       src="assets/cards/{{ game.currentCard }}.png"
-      class="takeCard"
+      class="card__taken"
       style="right: 40px"
     />
   </div>
-  <div [class.player--remove]="removeMode" class="addedPlayer z--1">
+  <div [class.player--remove]="removeMode" class="player--added z--1">
     <app-player
       *ngFor="let player of game.players; let i = index"
       [name]="player"
@@ -47,27 +47,29 @@
   <section
     id="addPlayerArea"
     [class.component--hide]="addPlayerDialog"
-    class="addPlayerArea z--5"
+    class="player__area--add z--5"
   >
-    <div class="addPlayerContainer z--5">
+    <div class="player--added__box z--5">
       <div (click)="close()" class="button--close bg--red"></div>
       <div
         id="playerImgBox-{{ playerName }}"
-        class="playerImgBox {{ playerBg }}"
+        class="player__img__box {{ playerBg }}"
       >
         <img
           src="https://avatars.dicebear.com/api/bottts/:{{ playerName }}.svg"
         />
       </div>
-      <p class="playerName" id="playerName">{{ playerName }}</p>
+      <p class="player__name" id="playerName">{{ playerName }}</p>
       <input
         maxlength="10"
         minlength="4"
-        class="inputPlayerName"
+        class="player__name--input"
         (keyup)="onKey($event)"
       />
-      <button (click)="addPlayer()" class="addPlayerButton">Add player</button>
-      <div class="changeColor">
+      <button (click)="addPlayer()" class="player__button--add">
+        Add player
+      </button>
+      <div class="color--change">
         <div (click)="changeBgBlue()" class="color bg--blue"></div>
         <div (click)="changeBgRed()" class="color bg--red"></div>
         <div (click)="changeBgGreen()" class="color bg--green"></div>

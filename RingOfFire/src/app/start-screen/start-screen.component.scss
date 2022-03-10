@@ -20,12 +20,14 @@
   width: 30%;
   object-fit: contain;
   background-color: rgb(34, 34, 34);
-  padding: 4% 6% 4% 6%;
+  padding: 1.6rem;
   border-radius: 16px;
   transition: all 0.125s ease-in-out;
-
   &:hover {
     cursor: pointer;
     filter: brightness(1.5);
+  }
+  @media (max-width: 700px) {
+    padding: 4% 6% 4% 6%;
   }
 }

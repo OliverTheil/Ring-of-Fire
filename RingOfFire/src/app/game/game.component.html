@@ -34,6 +34,7 @@
   </div>
   <app-game-card [card]="game.currentCard"></app-game-card>
   <div id="gameArea"></div>
+  <button class="button--restart bg--orange z--5" (click)="restart()"></button>
   <button
     (click)="enableRemove()"
     class="button--remove bg--red z--1"

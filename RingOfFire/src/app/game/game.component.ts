@@ -45,30 +45,57 @@ export class GameComponent implements OnInit {
     this.checkPlayers();
   }
 
+  restart() {
+    this.firestore
+      .collection('games')
+      .doc(this.gameId)
+      .update(this.game.resetGame());
+    this.addPlayerDialog = false;
+    this.addMode = false;
+    this.removeButtonEnabled = false;
+    this.removeMode = false;
+    this.checkPlayers;
+  }
+
   newGame() {
     this.game = new Game();
   }
 
   takeCard() {
     let gameArea = document.getElementById('gameArea');
+    this.checkDeck();
     if (!this.game.pickCardAnimation && this.game.players.length != 0) {
-      this.game.currentCard = this.game.stack.pop();
-      this.game.pickCardAnimation = true;
-      this.game.currentPlayer++;
-      this.saveSession();
+      this.playCard();
       if (this.game.players.length == this.game.currentPlayer) {
         this.game.currentPlayer = 0;
       }
-      setTimeout(() => {
-        this.game.pickCardAnimation = false;
-        this.game.playedCards.push(this.game.currentCard);
-        this.saveSession();
-      }, 800);
+      this.playCardFinish();
     } else if (this.game.players.length == 0) {
       this.noPlayer(gameArea);
       this.deleteAlertWindow();
     }
     this.saveSession();
+  }
+
+  playCard() {
+    this.game.currentCard = this.game.stack.pop();
+    this.game.pickCardAnimation = true;
+    this.game.currentPlayer++;
+    this.saveSession();
+  }
+
+  playCardFinish() {
+    setTimeout(() => {
+      this.game.pickCardAnimation = false;
+      this.game.playedCards.push(this.game.currentCard);
+      this.saveSession();
+    }, 800);
+  }
+
+  checkDeck() {
+    if (this.game.stack.length == 0) {
+      this.game.prepareCards();
+    }
   }
 
   onKey(event: any) {
@@ -148,13 +175,6 @@ export class GameComponent implements OnInit {
     this.saveSession();
   }
 
-  saveSession() {
-    this.firestore
-      .collection('games')
-      .doc(this.gameId)
-      .update(this.game.toJson());
-  }
-
   finishAddPlayer(showPlayerName) {
     this.game.players.push(showPlayerName);
     this.enableBackgroundColor();
@@ -172,6 +192,13 @@ export class GameComponent implements OnInit {
       this.game.playerBg.push(this.playerBg);
     }
     this.saveSession();
+  }
+
+  saveSession() {
+    this.firestore
+      .collection('games')
+      .doc(this.gameId)
+      .update(this.game.toJson());
   }
 
   tooMuchPlayer(gameArea) {

@@ -8,13 +8,16 @@ export class Game {
   public currentCard: string = '';
 
   constructor() {
+    this.prepareCards();
+  }
+
+  public prepareCards() {
     for (let i = 1; i < 14; i++) {
       this.stack.push('ace_' + i);
       this.stack.push('hearts_' + i);
       this.stack.push('clubs_' + i);
       this.stack.push('diamonds_' + i);
     }
-
     this.shuffle(this.stack);
   }
 
@@ -27,6 +30,17 @@ export class Game {
       currentPlayer: this.currentPlayer,
       pickCardAnimation: this.pickCardAnimation,
       currentCard: this.currentCard,
+    };
+  }
+
+  public resetGame() {
+    return {
+      players: [],
+      playerBg: [],
+      playedCards: [],
+      currentPlayer: 0,
+      pickCardAnimation: false,
+      currentCard: '',
     };
   }
 

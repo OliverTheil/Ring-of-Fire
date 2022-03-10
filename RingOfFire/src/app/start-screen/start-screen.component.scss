@@ -4,36 +4,24 @@
   max-width: 100%;
   background-image: url("/assets/img/cardsBackground.jpg");
   background-size: cover;
-}
-
-.ringOfFireSpan {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 100px;
-  height: fit-content;
-  width: fit-content;
-  color: gold;
-  z-index: 2;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  @media (max-width: 600px) {
-    margin: 0.8rem;
-    line-height: 110%;
-    text-align: center;
-  }
 }
 
-.dice {
-  z-index: 2;
-  position: absolute;
-  bottom: 0;
-  right: 50px;
-  width: 200px;
+.startScreen__logo {
+  width: 80%;
   object-fit: contain;
+}
+
+.startScreen__click {
+  margin-top: 2rem;
+  width: 30%;
+  object-fit: contain;
+  background-color: rgb(34, 34, 34);
+  padding: 4% 6% 4% 6%;
+  border-radius: 16px;
   transition: all 0.125s ease-in-out;
 
   &:hover {

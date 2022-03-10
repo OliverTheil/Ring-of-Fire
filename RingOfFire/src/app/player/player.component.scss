@@ -42,12 +42,19 @@
   font-weight: 300;
   width: fit-content;
   height: fit-content;
+  border-radius: 4px;
+  background: aquamarine;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(9.7px);
+  border: 2px solid aquamarine;
+
+  -webkit-backdrop-filter: blur(9.7px);
   @media (max-width: 700px) {
     font-size: 1.2rem;
   }
 }
 
 .player-active {
-  background-color: aquamarine;
+  border: 2px solid aquamarine;
   border-radius: 16px;
 }

@@ -65,8 +65,8 @@ export class GameComponent implements OnInit {
         this.game.playedCards.push(this.game.currentCard);
         console.table(this.game);
         this.saveSession();
-      }, 2000);
-    } else {
+      }, 800);
+    } else if (this.game.players.length == 0) {
       this.noPlayer(gameArea);
       this.deleteAlertWindow();
     }

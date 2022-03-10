@@ -20,9 +20,9 @@
     height: 14rem;
   }
 
-  @media (min-height: 620px) {
+  @media (max-height: 620px) {
     bottom: 0;
-    height: 8rem;
+    height: 7rem;
   }
 
   &__title {

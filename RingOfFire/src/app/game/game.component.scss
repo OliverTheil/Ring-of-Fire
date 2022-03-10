@@ -65,17 +65,17 @@
 .played-card {
   right: 40px;
   transform: scale(1.2) translateX(220px) translateY(-200px) rotate(-10deg);
-  @media (max-width: 700px) {
-    transform: scale(1.2) translateX(120px) translateY(-200px) rotate(-10deg);
+  @media (max-width: 800px) {
+    transform: scale(1.2) translateX(120px) translateY(-120px) rotate(-10deg);
   }
 }
 
 .takeCard {
-  animation: pickCardAnimation 2s ease-in-out;
+  animation: pickCardAnimation 0.8s ease-in-out;
   transform: scale(1.2) translateX(220px) translateY(-200px) rotate(-10deg);
-  @media (max-width: 700px) {
-    animation: pickCardAnimationMobile 2s ease-in-out;
-    transform: scale(1.2) translateX(120px) translateY(-200px) rotate(-10deg);
+  @media (max-width: 800px) {
+    animation: pickCardAnimationMobile 0.8s ease-in-out;
+    transform: scale(1.2) translateX(120px) translateY(-120px) rotate(-10deg);
   }
 }
 
@@ -103,7 +103,7 @@
   }
 
   100% {
-    transform: scale(1.2) translateX(120px) translateY(-200px) rotate(-10deg);
+    transform: scale(1.2) translateX(120px) translateY(-120px) rotate(-10deg);
   }
 }
 

@@ -7,12 +7,8 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "public": "y",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
+    "public": "dist/ring-of-fire",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
         "source": "**",
@@ -22,5 +18,8 @@
   },
   "storage": {
     "rules": "storage.rules"
+  },
+  "remoteconfig": {
+    "template": "remoteconfig.template.json"
   }
 }

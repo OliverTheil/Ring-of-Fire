@@ -156,6 +156,7 @@ export class GameComponent implements OnInit {
   }
 
   addPlayer() {
+    this.clearInput();
     let showPlayerName = document.getElementById('playerName').innerHTML;
     let gameArea = document.getElementById('gameArea');
     showPlayerName = this.playerName;
@@ -245,6 +246,12 @@ export class GameComponent implements OnInit {
     setTimeout(() => {
       document.getElementById('gameArea').innerHTML = '';
     }, 2500);
+  }
+
+  clearInput() {
+    let inputs = document.querySelectorAll('input');
+    inputs.forEach((input) => (input.value = ''));
+    document.getElementById('playerName').innerHTML = '';
   }
 
   changeBgBlue() {

@@ -35,8 +35,6 @@ export class Game {
 
   public resetGame() {
     return {
-      players: [],
-      playerBg: [],
       playedCards: [],
       currentPlayer: 0,
       pickCardAnimation: false,
